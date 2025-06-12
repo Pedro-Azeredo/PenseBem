@@ -68,20 +68,18 @@ function App() {
 };
 
   const iniciarModoOperacao = () => {
-    // Só funciona se estiver no modo 'on'
     if (gameMode !== 'on') return;
 
-    setGameMode('op_running'); // Ativa o modo de operação
-    gerarNovaOperacao(); // Gera o primeiro problema
+    setGameMode('op_running');
+    gerarNovaOperacao();
     const audio = new Audio('/audio/modo.mp3');
     audio.play();
   }
 
   const handleOperatorClick = (operadorEscolhido) => {
-    // Só funciona se estiver no modo de operação
     if (gameMode !== 'op_running') return;
 
-    // Verifica se a resposta está correta
+
     if (operadorEscolhido === operacaoAtual.operadorCorreto) {
       setSmallDisplayValue("CORRETO!");
       setSmallDisplayColor("green");
@@ -94,7 +92,6 @@ function App() {
       audio.play();
     }
 
-    // Após 1.5s, gera uma nova pergunta, criando um loop infinito de jogo
     setTimeout(() => {
       setSmallDisplayColor("yellow");
       gerarNovaOperacao();
@@ -135,10 +132,9 @@ function App() {
     setBookIsOpen(isOpening);
 
     if (isOpening) {
-      // Entrando no modo livro
       setGameMode('book_select');
       setSmallDisplayValue("QUAL O LIVRO?");
-      setDisplayValue(""); // Limpa o visor principal para a resposta
+      setDisplayValue("");
       const audio = new Audio(`/audio/modo.mp3`);
       audio.play();
     } else {
@@ -220,7 +216,6 @@ function App() {
       const audio = new Audio('/audio/acerto.mp3');
       audio.play();
       
-      // Agenda o avanço para a próxima pergunta
       setTimeout(() => {
         avancarParaProximaPergunta(novaPontuacao);
       }, 1500);
@@ -235,7 +230,6 @@ function App() {
         const audio = new Audio('/audio/erro_livro.mp3');
         audio.play();
         
-        // Agenda a restauração da tela para a nova tentativa
         setTimeout(() => {
           const idDaPerguntaAtual = livroAtual.gabarito[perguntaAtualIndex].id;
           setSmallDisplayValue(`PERGUNTA ${idDaPerguntaAtual}`);
@@ -243,11 +237,10 @@ function App() {
           setDisplayValue("");
         }, 1500);
 
-      } else { // Se era a última tentativa
+      } else {
         setSmallDisplayValue("ERRADO! FIM DAS TENTATIVAS");
         const audio = new Audio('/audio/erro_todas_tentativas.mp3');
         audio.play();       
-        // Agenda o avanço para a próxima pergunta (sem dar pontos)
         setTimeout(() => {
           avancarParaProximaPergunta(pontos);
         }, 1500);
@@ -256,17 +249,14 @@ function App() {
   };
 
   const avancarParaProximaPergunta = (pontuacaoFinal) => {
-    // Reseta a cor para o padrão
     setSmallDisplayColor('yellow');
 
-    // Verifica se o jogo acabou
     if (perguntaAtualIndex >= livroAtual.gabarito.length -1 ) {
       setSmallDisplayValue(`FIM! PONTOS: ${pontuacaoFinal}`);
       setGameMode('on');
       setLivroAtual(null);
       setDisplayValue("");
     } else {
-      // Prepara para a próxima pergunta
       const proximoIndex = perguntaAtualIndex + 1;
       setPerguntaAtualIndex(proximoIndex);
 
