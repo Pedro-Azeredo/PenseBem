@@ -72,7 +72,7 @@ function App() {
 
     setGameMode('op_running');
     gerarNovaOperacao();
-    const audio = new Audio('https://pedro-azeredo.github.io/PenseBem/audio/modo.mp3');
+    const audio = new Audio(`${import.meta.env.BASE_URL}audio/modo.mp3`);
     audio.play();
   }
 
@@ -104,7 +104,7 @@ function App() {
       setGameMode('on');
       setSmallDisplayValue("SEJA BEM-VINDO!")
       setDisplayValue("Selecione um Modo");
-      const audio = new Audio(`/audio/ligar.mp3`);
+      const audio = new Audio(`${import.meta.env.BASE_URL}audio/ligar.mp3`);
       audio.play();
     } else {
       setGameMode('off');
