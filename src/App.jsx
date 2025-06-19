@@ -72,7 +72,7 @@ function App() {
 
     setGameMode('op_running');
     gerarNovaOperacao();
-    const audio = new Audio('/audio/modo.mp3');
+    const audio = new Audio('https://pedro-azeredo.github.io/PenseBem/audio/modo.mp3');
     audio.play();
   }
 

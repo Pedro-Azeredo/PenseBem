@@ -1,7 +1,7 @@
 function Pdf () {
     return(
         <iframe 
-            src="/public/pense_bem_formula_1.pdf#toolbar=0" 
+            src="/pense_bem_formula_1.pdf#toolbar=0" 
             width="450px" 
             height="550px"
             title="Visualizador de PDF"
