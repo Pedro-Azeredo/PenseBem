@@ -6,7 +6,7 @@ const Botoes = ({ openOrCloseBook, turnOnOrOff, handleNumberClick, handleEnterCl
         }
 
         // Se o aparelho estiver ligado, o código abaixo executa normalmente.
-        const audio = new Audio(`/audio/notas_musicais/${nota}.mp3`);
+        const audio = new Audio(`${import.meta.env.BASE_URL}audio/notas_musicais/${nota}.mp3`);
         audio.play();
     };
 

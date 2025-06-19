@@ -83,12 +83,12 @@ function App() {
     if (operadorEscolhido === operacaoAtual.operadorCorreto) {
       setSmallDisplayValue("CORRETO!");
       setSmallDisplayColor("green");
-      const audio = new Audio('/audio/acerto.mp3');
+      const audio = new Audio(`${import.meta.env.BASE_URL}audio/acerto.mp3`);
       audio.play();
     } else {
       setSmallDisplayValue("ERRADO!");
       setSmallDisplayColor("red");
-      const audio = new Audio('/audio/erro_livro.mp3');
+      const audio = new Audio(`${import.meta.env.BASE_URL}audio/erro_livro.mp3`);
       audio.play();
     }
 
@@ -135,21 +135,21 @@ function App() {
       setGameMode('book_select');
       setSmallDisplayValue("QUAL O LIVRO?");
       setDisplayValue("");
-      const audio = new Audio(`/audio/modo.mp3`);
+      const audio = new Audio(`${import.meta.env.BASE_URL}audio/modo.mp3`);
       audio.play();
     } else {
       setGameMode('on');
       setSmallDisplayValue("SEJA BEM-VINDO!");
       setDisplayValue("Selecione um Modo");
       setLivroAtual(null);
-      const audio = new Audio(`/audio/erro_livro.mp3`);
+      const audio = new Audio(`${import.meta.env.BASE_URL}audio/erro_livro.mp3`);
       audio.play();
     }
   };
 
   const handleNumberClick = (number) => {
     if (gameMode === 'on') {
-      const audio = new Audio('/audio/erro.mp3');
+      const audio = new Audio(`${import.meta.env.BASE_URL}audio/erro.mp3`);
       audio.play();
       return;
     }
@@ -161,7 +161,7 @@ function App() {
       else {
         setDisplayValue(prevValue => prevValue.slice(1) + number);
       }
-      const audio = new Audio('/audio/acao.mp3');
+      const audio = new Audio(`${import.meta.env.BASE_URL}audio/acao.mp3`);
       audio.play();
     }
   };
@@ -169,7 +169,7 @@ function App() {
   const handleEnterClick = () => {
       
     if (gameMode === 'on') {
-        const audio = new Audio('/audio/erro.mp3');
+        const audio = new Audio(`${import.meta.env.BASE_URL}audio/erro.mp3`);
         audio.play();
         return;
       }
@@ -187,7 +187,7 @@ function App() {
           setSmallDisplayValue(`PERGUNTA ${idDaPrimeiraPergunta}`);
 
           setDisplayValue("");
-          const audio = new Audio('/audio/acerto.mp3');
+          const audio = new Audio(`${import.meta.env.BASE_URL}audio/acerto.mp3`);
           audio.play();
         } else {
           setSmallDisplayValue("LIVRO " + displayValue + " INVÁLIDO");
@@ -213,7 +213,7 @@ function App() {
       setPontos(novaPontuacao);
       setSmallDisplayValue(`CORRETO! +${pontosGanhos} PONTOS`);
       setSmallDisplayColor('green');
-      const audio = new Audio('/audio/acerto.mp3');
+      const audio = new Audio(`${import.meta.env.BASE_URL}audio/acerto.mp3`);
       audio.play();
       
       setTimeout(() => {
@@ -227,7 +227,7 @@ function App() {
       if (tentativas < 3) {
         setTentativas(prev => prev + 1);
         setSmallDisplayValue("ERRADO! TENTE NOVAMENTE");
-        const audio = new Audio('/audio/erro_livro.mp3');
+        const audio = new Audio(`${import.meta.env.BASE_URL}audio/erro_livro.mp3`);
         audio.play();
         
         setTimeout(() => {
@@ -239,7 +239,7 @@ function App() {
 
       } else {
         setSmallDisplayValue("ERRADO! FIM DAS TENTATIVAS");
-        const audio = new Audio('/audio/erro_todas_tentativas.mp3');
+        const audio = new Audio(`${import.meta.env.BASE_URL}audio/erro_todas_tentativas.mp3`);
         audio.play();       
         setTimeout(() => {
           avancarParaProximaPergunta(pontos);
